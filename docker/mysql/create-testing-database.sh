@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+mysql --user=root --password="$MYSQL_ROOT_PASSWORD" <<-EOSQL
+    CREATE DATABASE IF NOT EXISTS test_$MYSQL_DATABASE;
+    GRANT ALL PRIVILEGES ON test_$MYSQL_DATABASE.* TO '$MYSQL_USER'@'%';
+EOSQL
