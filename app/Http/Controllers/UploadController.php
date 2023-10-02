@@ -23,8 +23,7 @@ class UploadController extends Controller
      */
     public function index(): View
     {
-//        $image = $this->storageService->getS3TemporaryUrl('/file/9a45371b-c1b6-46c0-adf4-637e26193648');
-        $image = null;
+        $image = $this->storageService->getS3TemporaryUrl('/file/9a45371b-c1b6-46c0-adf4-637e26193648');
 
         return view('upload', compact('image'));
     }
