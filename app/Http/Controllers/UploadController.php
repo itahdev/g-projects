@@ -14,7 +14,7 @@ class UploadController extends Controller
      * @param StorageService $storageService
      */
     public function __construct(
-        private readonly StorageService $storageService
+        private readonly StorageService $storageService,
     ) {
     }
 
@@ -23,7 +23,8 @@ class UploadController extends Controller
      */
     public function index(): View
     {
-        $image = $this->storageService->getS3TemporaryUrl('/file/9a45371b-c1b6-46c0-adf4-637e26193648');
+//        $image = null;
+        $image = $this->storageService->getImageUrl('/file/9a520dfd-54ce-4eff-8064-b1b0a21135d3');
 
         return view('upload', compact('image'));
     }
