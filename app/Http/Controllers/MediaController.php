@@ -25,6 +25,8 @@ class MediaController extends Controller
     {
         $storagePath = Storage::url('/file/9a522513-1ec7-4fb6-8de4-4c853fee3fb4');
         $storageUrl = $this->client->get($storagePath);
+        dd($storagePath, $storageUrl);
+
         return response($storageUrl)->header(
             'Content-Type',
             $storageUrl ? $storageUrl->header('Content-Type') : 'image/jpeg'
