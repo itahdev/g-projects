@@ -55,7 +55,7 @@ class StorageServiceImpl implements StorageService
                 throw new RuntimeException('The file is invalid.');
             }
 
-            Storage::put($filePath, $fileContent, 'public');
+            Storage::put($filePath, $fileContent);
 
             return $filePath;
         } catch (\Exception $e) {
