@@ -23,10 +23,7 @@ class UploadController extends Controller
      */
     public function index(): View
     {
-//        $image = null;
-        $image = $this->storageService->getImageUrl('/file/9a520dfd-54ce-4eff-8064-b1b0a21135d3');
-
-        return view('upload', compact('image'));
+        return view('upload');
     }
 
     /**
@@ -36,7 +33,8 @@ class UploadController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $file = $request->file('file');
-        $this->storageService->uploadFile($file, 'file', Str::orderedUuid());
+        $path = $this->storageService->uploadFile($file, 'file', Str::orderedUuid());
+        dd($path);
 
         return back();
     }

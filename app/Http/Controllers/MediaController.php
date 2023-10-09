@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Services\MediaService;
 use Illuminate\Http\Client\Factory as ClientFactory;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,13 +17,13 @@ class MediaController extends Controller
     }
 
     /**
+     * @param string $path
      * @return Response
      */
-    public function show(): Response
+    public function show(string $path): Response
     {
-        $storagePath = Storage::url('/file/9a522513-1ec7-4fb6-8de4-4c853fee3fb4');
+        $storagePath = Storage::url($path);
         $storageUrl = $this->client->get($storagePath);
-        dd($storagePath, $storageUrl);
 
         return response($storageUrl)->header(
             'Content-Type',

@@ -29,16 +29,6 @@ services:
     networks:
       - backend
 
-  batch:
-    container_name: g_batch
-    build:
-      context: .
-      dockerfile: docker/batch/Dockerfile
-    volumes:
-      - '.:/var/www/html'
-    networks:
-      - backend
-
   mysql:
     container_name: g_mysql
     image: 'mysql:8.0.32'

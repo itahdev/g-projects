@@ -17,8 +17,5 @@
         <input type="file" name="file">
         <button type="submit">Tải lên</button>
     </form>
-
-    <img src="{{ $image }}" alt="" />
-
     </body>
 </html>

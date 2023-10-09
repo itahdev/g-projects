@@ -20,4 +20,4 @@ Route::get('/user', static fn() => response()->json());
 Route::get('/upload', [UploadController::class, 'index']);
 Route::post('/upload', [UploadController::class, 'store']);
 
-Route::get('static/media', [MediaController::class, 'show'])->where('path', '.*')->name('media.show');
+Route::get('static/media/{path}', [MediaController::class, 'show'])->where('path', '.*')->name('media.show');
