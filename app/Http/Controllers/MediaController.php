@@ -2,32 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Client\Factory as ClientFactory;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class MediaController extends Controller
 {
     /**
-     * @param ClientFactory $client
-     */
-    public function __construct(
-        private readonly ClientFactory $client,
-    ) {
-    }
-
-    /**
      * @param string $path
-     * @return Response
+     * @return StreamedResponse
      */
-    public function show(string $path): Response
+    public function show(string $path): StreamedResponse
     {
-        $storagePath = Storage::url($path);
-        $storageUrl = $this->client->get($storagePath);
-
-        return response($storageUrl)->header(
-            'Content-Type',
-            $storageUrl ? $storageUrl->header('Content-Type') : 'image/jpeg'
-        );
+        return Storage::response($path);
     }
 }
