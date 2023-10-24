@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-use App\Transformers\Commons\ErrorResource;
+use App\Resources\Base\ErrorResource;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Transformers\Commons;
+namespace App\Resources\Base;
 
 use Illuminate\Http\Resources\Json\ResourceResponse as JsonResourceResponse;
 use Illuminate\Pagination\AbstractCursorPaginator;

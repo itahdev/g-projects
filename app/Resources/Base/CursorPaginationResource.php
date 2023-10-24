@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Transformers\Commons;
+namespace App\Resources\Base;
 
 use Illuminate\Pagination\CursorPaginator;
 
@@ -23,6 +23,11 @@ class CursorPaginationResource extends Resource
             'prev_page_url' => $resource->previousPageUrl(),
         ];
 
-        parent::__construct($resource, new MetaCursorPaginationResource($message, $cursorPagination));
+        $meta = new MetaCursorPaginationResource(
+            message: $message,
+            cursorPagination: $cursorPagination
+        );
+
+        parent::__construct(resource: $resource, meta: $meta);
     }
 }

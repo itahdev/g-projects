@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Transformers\Commons;
+namespace App\Resources\Base;
 
 use OpenApi\Attributes as OA;
 
@@ -27,6 +27,6 @@ class ErrorResource extends Resource
      */
     public function __construct(string $message = 'Bad request', $resource = null, array $errors = null)
     {
-        parent::__construct($resource, new MetaResource($message, $errors));
+        parent::__construct(resource: $resource, meta: new MetaResource($message, $errors));
     }
 }

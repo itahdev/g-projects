@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Transformers\Commons;
+namespace App\Resources\Base;
 
 class SuccessCollectionResource extends Resource
 {
@@ -12,6 +12,6 @@ class SuccessCollectionResource extends Resource
      */
     public function __construct(mixed $resource = null, string $message = 'Successful operation')
     {
-        parent::__construct($resource, new MetaResource($message));
+        parent::__construct(resource: $resource, meta: new MetaResource($message));
     }
 }
