@@ -11,30 +11,53 @@ use Illuminate\Support\Facades\Route;
 class RouteServiceProvider extends ServiceProvider
 {
     /**
-     * The path to your application's "home" route.
+     * The path to the "home" route for your application.
      *
-     * Typically, users are redirected here after authentication.
+     * This is used by Laravel authentication to redirect users after login.
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/';
 
     /**
-     * Define your route model bindings, pattern filters, and other route configuration.
+     * @return void
      */
     public function boot(): void
     {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
+        $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::middleware('api')
-                ->prefix('api')
-                ->group(base_path('routes/api.php'));
+            $this->mapWebRoutes();
+            $this->mapApiV1Routes();
+        });
+    }
 
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
+    /**
+     * @return void
+     */
+    protected function mapWebRoutes(): void
+    {
+        Route::middleware('web')
+            ->group(base_path('routes/web.php'));
+    }
+
+    /**
+     * @return void
+     */
+    protected function mapApiV1Routes(): void
+    {
+        Route::middleware('api')
+            ->prefix('api/v1')
+            ->group(base_path('routes/api.php'));
+    }
+
+    /**
+     * @return void
+     */
+    protected function configureRateLimiting(): void
+    {
+        RateLimiter::for('api', static function (Request $request) {
+            return Limit::perMinute(180)->by($request->user()?->id ?: $request->ip());
         });
     }
 }
